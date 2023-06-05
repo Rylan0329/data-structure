@@ -41,14 +41,45 @@ void PrintLinkedList()
         temp = temp->next;
     }
 }
+void Insert1(Node **node, int data, int position)
+{
+    Node *temp1 = new Node();
+    temp1->data = data;
+    temp1->next = NULL;
+    if (position == 1)
+    {
+        temp1->next = *node;
+        *node = temp1;
+        return;
+    }
+    Node *temp2 = *node;
+    for (int i = 0; i < position - 2; i++)
+    {
+        temp2 = temp2->next;
+    }
+    temp1->next = temp2->next;
+    temp2->next = temp1;
+}
+void PrintLinkedList1(Node *node)
+{
+    Node *temp = node;
+    printf("The linked list elements: ");
+    while (temp != NULL)
+    {
+        printf(" %d ", temp->data);
+        temp = temp->next;
+    }
+}
 int main()
 {
     // head node point at NULL
     head = NULL;
-    Insert(5, 1); // 5
-    Insert(7, 2); // 5, 7
-    Insert(6, 3); // 5, 7, 6
-    Insert(4, 2); // 5, 4, 7, 6
-    Insert(8, 1); // 8, 5, 4, 7, 6
-    PrintLinkedList();
+    Node *head1 = NULL;
+    Insert1(&head1, 5, 1); // 5
+    Insert1(&head1, 7, 2); // 5, 7
+    Insert1(&head1, 6, 3); // 5, 7, 6
+    Insert1(&head1, 4, 2); // 5, 4, 7, 6
+    Insert1(&head1, 8, 1); // 8, 5, 4, 7, 6
+    // PrintLinkedList();
+    PrintLinkedList1(head1);
 }
